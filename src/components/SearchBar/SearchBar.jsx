@@ -1,8 +1,8 @@
 import css from './SearchBar.module.css';
-const SearchBar = ({ handleSubmit }) => {
+const SearchBar = ({ handleChangeQuery }) => {
   return (
     <header>
-      <form className={css.form} onSubmit={handleSubmit}>
+      <form className={css.form} onSubmit={handleChangeQuery}>
         <input
           className={css.input}
           type="text"
