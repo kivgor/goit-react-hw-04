@@ -1,7 +1,10 @@
 import css from './ImageCard.module.css';
-const ImageCard = ({ urls, alt_description, likes, user }) => {
+const ImageCard = ({ urls, alt_description, likes, user, openModal }) => {
   return (
-    <li className={css.item}>
+    <li
+      className={css.item}
+      onClick={() => openModal(urls.regular, alt_description)}
+    >
       <div className={css.text}>
         <span className={css.bold}>Autor: </span> {user.name}
       </div>

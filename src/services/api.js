@@ -6,9 +6,10 @@ export const fetchImagesByQuery = async (query, page) => {
       client_id: 'fAybjthjUpXgAiQRgc05ZoRjv6Q4t5ldGkTZ1S9E_oo',
       query,
       page,
-      per_page: 3,
+      per_page: 12,
       orientation: 'landscape',
     },
   });
+
   return data;
 };
