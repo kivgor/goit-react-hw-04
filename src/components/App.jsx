@@ -7,9 +7,8 @@ import Loader from './Loader/Loader.jsx';
 import { useEffect, useState } from 'react';
 import { fetchImagesByQuery } from '../services/api.js';
 import toast from 'react-hot-toast';
-import Modal from 'react-modal';
-import ImageModal from './ImageModal/ImageModal.jsx';
-Modal.setAppElement('#root');
+import ImageModal from 'react-modal';
+ImageModal.setAppElement('#root');
 
 function App() {
   const [imageList, setImageList] = useState([]);
@@ -88,7 +87,7 @@ function App() {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       border: 'none',
-      padding: '10px',
+      padding: '0px',
     },
   };
 
@@ -105,13 +104,13 @@ function App() {
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
 
-      <Modal
+      <ImageModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <ImageModal urlForModal={urlForModal} altForModal={altForModal} />
-      </Modal>
+        <img src={urlForModal} alt={altForModal} />
+      </ImageModal>
     </>
   );
 }

@@ -20,7 +20,6 @@ const SearchBar = ({ handleChangeQuery }) => {
           placeholder="Search images and photos"
           name="search"
           onChange={evt => setValue(evt.target.value.trim())}
-          // value={value}
         />
         <button className={css.button} type="submit">
           Search
