@@ -5,7 +5,9 @@ const ImageGallery = ({ imageList, openModal }) => {
   return (
     <ul className={css.list}>
       {imageList.map(image => (
-        <ImageCard {...image} key={image.id} openModal={openModal} />
+        <li key={image.id} className={css.item}>
+          <ImageCard {...image} openModal={openModal} />
+        </li>
       ))}
     </ul>
   );

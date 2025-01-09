@@ -48,21 +48,18 @@ function App() {
     getImagesData();
   }, [query, page]);
 
-  const handleChangeQuery = evt => {
-    evt.preventDefault();
-    if (evt.target.search.value.trim() === '') {
+  const handleChangeQuery = newQuery => {
+    if (newQuery === '') {
       toast.error('Please enter query!');
       return;
     }
-    if (query === evt.target.search.value.trim()) {
+    if (newQuery === query) {
       toast.error('Please change query!');
       return;
     }
-
-    setQuery(evt.target.search.value.trim());
+    setQuery(newQuery);
     setImageList([]);
     setPage(1);
-    evt.target.reset();
   };
 
   const handleLoadMore = () => {
