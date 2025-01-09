@@ -7,8 +7,7 @@ import Loader from './Loader/Loader.jsx';
 import { useEffect, useState } from 'react';
 import { fetchImagesByQuery } from '../services/api.js';
 import toast from 'react-hot-toast';
-import ImageModal from 'react-modal';
-ImageModal.setAppElement('#root');
+import ImageModal from './ImageModal/ImageModal.jsx';
 
 function App() {
   const [imageList, setImageList] = useState([]);
@@ -48,10 +47,6 @@ function App() {
   }, [query, page]);
 
   const handleChangeQuery = newQuery => {
-    if (newQuery === '') {
-      toast.error('Please enter query!');
-      return;
-    }
     if (newQuery === query) {
       toast.error('Please change query!');
       return;
@@ -75,22 +70,6 @@ function App() {
     setIsOpen(false);
   }
 
-  const customStyles = {
-    overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.85)',
-    },
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      border: 'none',
-      padding: '0px',
-    },
-  };
-
   return (
     <>
       <SearchBar handleChangeQuery={handleChangeQuery} />
@@ -100,17 +79,14 @@ function App() {
       {imageList.length > 0 && page < totalPages && (
         <LoadMoreBtn handleLoadMore={handleLoadMore} />
       )}
-
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-
       <ImageModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        <img src={urlForModal} alt={altForModal} />
-      </ImageModal>
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        urlForModal={urlForModal}
+        altForModal={altForModal}
+      />
     </>
   );
 }
